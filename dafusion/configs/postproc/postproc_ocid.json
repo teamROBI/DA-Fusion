@@ -1,0 +1,18 @@
+{
+ "score_thresh": 0.8,
+ "mask_thresh": 0.55,
+ "min_mask_px": 300,
+ "dedup": "nms",
+ "cleanup": "none",
+ "size_gate": "cm2",
+ "fg_filter": "depth",
+ "depth_valid_thresh": 0.84,
+ "assign": "score_sort",
+ "size_cm2": [
+  2.0,
+  1000.0
+ ],
+ "plane_reject": true,
+ "plane_max_frac": 0.9,
+ "trim_to_valid": true
+}

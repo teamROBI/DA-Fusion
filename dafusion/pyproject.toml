@@ -1,0 +1,41 @@
+[project]
+name = "dafusion"
+version = "0.1.0"
+description = "DA-Fusion: Deformable Attention-Based RGB-D Fusion Transformer for Unseen Object Instance Segmentation (ICRA 2025) — faithful DS/DC reimplementation."
+requires-python = ">=3.10,<3.11"
+
+# NOTE: torch/torchvision (cu124), detectron2 (from source), and the MSDeformAttn
+# CUDA op are installed separately in scripts/setup_env.sh (they need a custom
+# index / editable install / fresh compile against CUDA 12.4). Everything else is here.
+dependencies = [
+    "numpy<2",
+    "opencv-python>=4.9",
+    "pillow<10.1",
+    "scipy>=1.11",
+    "scikit-image>=0.22",
+    "shapely>=2.0",
+    "timm>=0.9.12",
+    "h5py>=3.10",
+    "imageio>=2.34",
+    "termcolor>=2.4",
+    "tqdm>=4.66",
+    "cython>=3.0",
+    "wandb>=0.16",
+    "tensorboard>=2.14",
+    "pycocotools>=2.0.7",
+    "fvcore>=0.1.5",
+    "iopath>=0.1.9",
+    "omegaconf>=2.3",
+    "hydra-core>=1.3",
+    "yacs>=0.1.8",
+    "matplotlib>=3.7",
+    "pyquaternion>=0.9.9",
+    "open3d>=0.18",
+]
+
+[tool.setuptools.packages.find]
+include = ["dafusion*"]
+
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"

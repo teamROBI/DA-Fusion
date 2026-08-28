@@ -1,0 +1,19 @@
+# DA-Fusion RGB-D on UOAIS-Sim -- stage 2 (second cosine cycle).
+#
+# Continues from the stage-1 checkpoint with a fresh cosine decay at a lower LR for 150k samples.
+# Point MODEL.WEIGHTS at the stage-1 model_final.pth.
+#
+# Usage:
+#   NUM_GPUS=4 CONFIG=configs/dafusion_rgbd_uoais_stage2.yaml bash scripts/train.sh \
+#       SOLVER.IMS_PER_BATCH 20 SOLVER.MAX_ITER 7500 SOLVER.WARMUP_ITERS 200 \
+#       SOLVER.CHECKPOINT_PERIOD 1500
+_BASE_: dafusion_rgbd_uoais_stage1.yaml
+
+MODEL:
+  WEIGHTS: "../data/checkpoints/dafusion/dafusion_rgbd_swinL/model_final.pth"
+
+SOLVER:
+  BASE_LR: 0.00003
+  WARMUP_ITERS: 200
+
+OUTPUT_DIR: "../data/checkpoints/dafusion/dafusion_rgbd_cycle2_swinL"

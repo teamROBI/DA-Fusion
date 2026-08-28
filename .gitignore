@@ -1,0 +1,77 @@
+# ---- Data, weights, checkpoints (large / machine-specific) ----
+# NOTE: ignore ONLY the top-level `data` symlink + the in-repo store, NOT every dir named
+# `data` (that would swallow source packages like dafusion/dafusion/data & legacy/*/data).
+/data
+/_data/
+/_store/
+legacy/weights/
+*.pth
+*.pkl
+*.ckpt
+
+# ---- Baselines: not tracked (each keeps its own upstream git) ----
+/baselines/
+
+# ---- Python caches / build / compiled artifacts ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+*.so
+*.o
+*.obj
+.eggs/
+
+# ---- Virtual envs (each build owns its own) ----
+.venv/
+legacy/.venv/
+dafusion/.venv/
+venv/
+env/
+.uv/
+
+# ---- Third-party source clones (built into the venv, not tracked) ----
+dafusion/third_party/
+
+# ---- Experiment / run outputs ----
+wandb/
+output/
+outputs/
+legacy/eval_result/*
+!legacy/eval_result/.gitkeep
+legacy/predict_result/
+legacy/GT_image_result/
+legacy/demo/output*/
+events.out.tfevents.*
+
+# ---- Editor / OS ----
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+
+# ---- ETC ----
+reference_papers/
+debug/
+# ---- Local-only: experiment apparatus (not part of the released train/eval pipeline) ----
+docs/legacy_results/
+docs/EXPERIMENTS.md
+/scripts/
+dafusion/configs/*
+!dafusion/configs/Base-DAFusion-SwinL.yaml
+!dafusion/configs/dafusion_rgbd_uoais_stage1.yaml
+!dafusion/configs/dafusion_rgbd_uoais_stage2.yaml
+!dafusion/configs/postproc/
+dafusion/scripts/*
+!dafusion/scripts/train.sh
+!dafusion/scripts/eval.sh
+!dafusion/scripts/eval_sweep.sh
+!dafusion/scripts/setup_env.sh
+!dafusion/scripts/patch_detectron2.sh
+docs/DA-Fusion_ICRA2025.pdf
+
+# legacy CFS build lives on the legacy-cfs branch; keep it out of main
+/legacy/

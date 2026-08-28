@@ -1,0 +1,33 @@
+# DA-Fusion RGB-D on UOAIS-Sim -- stage 1 (main training run).
+#
+# Flattened: this is the complete recipe in one file rather than a chain of inherited configs.
+#   4 GPUs, IMS_PER_BATCH 20, MAX_ITER 22500 (= 450k samples), LR 1e-4 cosine, warmup 1000, AMP on.
+#
+# Usage:
+#   NUM_GPUS=4 CONFIG=configs/dafusion_rgbd_uoais_stage1.yaml bash scripts/train.sh \
+#       SOLVER.IMS_PER_BATCH 20 SOLVER.MAX_ITER 22500 SOLVER.WARMUP_ITERS 1000 \
+#       SOLVER.CHECKPOINT_PERIOD 3000
+_BASE_: Base-DAFusion-SwinL.yaml
+
+MODEL:
+  WEIGHTS: "../data/checkpoints/mask2former/dafusion_swinL_dualinit.pkl"
+  DAFUSION:
+    PIXEL_MEAN_DEPTH: [0.0, 0.0, 0.0]      # xyz is metric, not an ImageNet-style pseudo-image
+    PIXEL_STD_DEPTH: [1.0, 1.0, 1.0]
+  MASK_FORMER:
+    NO_OBJECT_WEIGHT: 0.05
+
+INPUT:
+  DEPTH_ENCODING: "xyz"                    # metric XYZ back-projection
+  DEPTH_INVERTED: False
+  DEPTH_NOISE: True                        # sensor-noise augmentation (multiplicative + GP + dropout)
+  DEPTH_HOLE_PATTERN: True                 # measured dead-band / shadow hole patterns
+  DEPTH_VALIDITY_CHANNEL: True             # 4th channel marking measured vs missing depth
+  DEPTH_ADAPTER: True                      # maps the 4-channel depth input onto the pretrained 3-ch stem
+  MAX_SCALE: 2.5
+
+DATASETS:
+  TRAIN: ("uoais_sim_train",)
+  TEST: ("uoais_sim_val",)
+
+OUTPUT_DIR: "../data/checkpoints/dafusion/dafusion_rgbd_swinL"
