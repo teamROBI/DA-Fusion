@@ -11,7 +11,7 @@
 
 <a href="https://ieeexplore.ieee.org/document/11128151"><img src="https://img.shields.io/badge/IEEE-ICRA%202025-00629B.svg" alt="ICRA 2025"></a>&nbsp;
 <a href="https://arxiv.org/abs/2607.17754"><img src="https://img.shields.io/badge/arXiv-2607.17754-b31b1b.svg" alt="arXiv"></a>&nbsp;
-<a href="https://github.com/teamROBI/DA-Fusion"><img src="https://img.shields.io/badge/Project-GitHub-181717.svg" alt="Project"></a>&nbsp;
+<a href="https://teamrobi.github.io/projects/da-fusion/"><img src="https://img.shields.io/badge/Project-GitHub-181717.svg" alt="Project"></a>&nbsp;
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>&nbsp;
 <img src="https://img.shields.io/badge/python-3.10-blue.svg" alt="Python 3.10">
 
